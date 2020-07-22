@@ -27,6 +27,7 @@ public class MypartyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MypartyActivity.this, MainActivity.class);
+                intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
 
             }
@@ -35,6 +36,7 @@ public class MypartyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MypartyActivity.this, PlaceActivity.class);
+                intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
 
             }
@@ -44,6 +46,7 @@ public class MypartyActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(MypartyActivity.this, PartylistActivity.class);
+                intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
         });
@@ -51,6 +54,7 @@ public class MypartyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MypartyActivity.this, MypartyActivity.class);
+                intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
 
             }
