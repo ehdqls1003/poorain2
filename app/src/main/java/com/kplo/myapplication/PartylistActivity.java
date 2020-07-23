@@ -28,6 +28,7 @@ public class PartylistActivity extends AppCompatActivity {
                 Intent intent = new Intent(PartylistActivity.this, MainActivity.class);
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
+                finish();
 
             }
         });
@@ -37,6 +38,7 @@ public class PartylistActivity extends AppCompatActivity {
                 Intent intent = new Intent(PartylistActivity.this, PlaceActivity.class);
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
+                finish();
 
             }
         });
@@ -47,6 +49,7 @@ public class PartylistActivity extends AppCompatActivity {
                 Intent intent = new Intent(PartylistActivity.this, PartylistActivity.class);
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
+                finish();
             }
         });
         myparty.setOnClickListener(new View.OnClickListener() {
@@ -55,9 +58,18 @@ public class PartylistActivity extends AppCompatActivity {
                 Intent intent = new Intent(PartylistActivity.this, MypartyActivity.class);
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
+                finish();
 
             }
         });
 
     }
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        overridePendingTransition(0, 0);
+
+    }
+
 }

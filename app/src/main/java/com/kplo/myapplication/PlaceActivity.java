@@ -26,6 +26,7 @@ public class PlaceActivity extends AppCompatActivity {
                 Intent intent = new Intent(PlaceActivity.this, MainActivity.class);
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
+                finish();
 
             }
         });
@@ -35,6 +36,7 @@ public class PlaceActivity extends AppCompatActivity {
                 Intent intent = new Intent(PlaceActivity.this, PlaceActivity.class);
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
+                finish();
 
             }
         });
@@ -45,6 +47,7 @@ public class PlaceActivity extends AppCompatActivity {
                 Intent intent = new Intent(PlaceActivity.this, PartylistActivity.class);
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
+                finish();
             }
         });
         myparty.setOnClickListener(new View.OnClickListener() {
@@ -53,9 +56,18 @@ public class PlaceActivity extends AppCompatActivity {
                 Intent intent = new Intent(PlaceActivity.this, MypartyActivity.class);
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
+                finish();
 
             }
         });
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        overridePendingTransition(0, 0);
 
     }
 }
