@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -588,6 +589,19 @@ public class Recipe extends AppCompatActivity {
 
         });
 
+
+
+        button_r.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Recipe.this, ShowrecipeActivity.class);
+                intent.putExtra("win",rList.get(win).getRECIPE_ID());
+                startActivity(intent);
+
+            }
+        });
+
     }
 
     private String getJsonString()
@@ -632,7 +646,7 @@ public class Recipe extends AppCompatActivity {
 
                 rList.add(recipe);
 
-                SaveFriendData(rList);
+                /*SaveFriendData(rList);*/
 
             }
         }catch (JSONException e) {
@@ -643,6 +657,7 @@ public class Recipe extends AppCompatActivity {
 
 
 
+/*
 
     //Shared 카트리스트 배열저장
     private void SaveFriendData(ArrayList<Recipejson> friends) {
@@ -653,6 +668,7 @@ public class Recipe extends AppCompatActivity {
         editor.putString("recipe", json);
         editor.commit();
     }
+*/
 
 
 

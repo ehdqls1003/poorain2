@@ -2,7 +2,6 @@ package com.kplo.myapplication;
 
 public class Recipejson3 {
 
-
     private String RECIPE_ID;
     private String IRDNT_NM;
     private String IRDNT_CPCTY;

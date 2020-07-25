@@ -1,8 +1,14 @@
 package com.kplo.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,6 +17,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class DatasaveActivity extends AppCompatActivity {
 
@@ -18,16 +25,31 @@ public class DatasaveActivity extends AppCompatActivity {
     ArrayList<Recipejson2> rList2 = new ArrayList<>();
     ArrayList<Recipejson3> rList3 = new ArrayList<>();
 
+    AppCompatButton button3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datasave);
 
+        button3 = findViewById(R.id.button3);
 
         jsonParsing(getJsonString());
         jsonParsing2(getJsonString2());
         jsonParsing3(getJsonString3());
+
+        SaveFriendData(rList);
+        SaveFriendData2(rList2);
+        SaveFriendData3(rList3);
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DatasaveActivity.this, Recipe.class);
+                startActivity(intent);
+
+            }
+        });
 
     }
 
@@ -121,6 +143,8 @@ public class DatasaveActivity extends AppCompatActivity {
 
                 rList2.add(recipe);
 
+
+
             }
         }catch (JSONException e) {
             e.printStackTrace();
@@ -163,8 +187,8 @@ public class DatasaveActivity extends AppCompatActivity {
                 Recipejson3 recipe = new Recipejson3();
 
                 recipe.setRECIPE_ID(movieObject.getString("RECIPE_ID"));
-                recipe.setRECIPE_ID(movieObject.getString("IRDNT_NM"));
-                recipe.setRECIPE_ID(movieObject.getString("IRDNT_CPCTY"));
+                recipe.setIRDNT_NM(movieObject.getString("IRDNT_NM"));
+                recipe.setIRDNT_CPCTY(movieObject.getString("IRDNT_CPCTY"));
 
                 rList3.add(recipe);
 
@@ -172,6 +196,33 @@ public class DatasaveActivity extends AppCompatActivity {
         }catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private void SaveFriendData(ArrayList<Recipejson> friends) {
+        SharedPreferences preferences = getSharedPreferences("recipe_list",MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(friends);
+        editor.putString("recipe", json);
+        editor.commit();
+    }
+
+    private void SaveFriendData2(ArrayList<Recipejson2> friends) {
+        SharedPreferences preferences = getSharedPreferences("recipe_list",MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(friends);
+        editor.putString("recipe2", json);
+        editor.commit();
+    }
+
+    private void SaveFriendData3(ArrayList<Recipejson3> friends) {
+        SharedPreferences preferences = getSharedPreferences("recipe_list",MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(friends);
+        editor.putString("recipe3", json);
+        editor.commit();
     }
 
 
