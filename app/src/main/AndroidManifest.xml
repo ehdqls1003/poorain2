@@ -11,17 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Recipe"></activity>
+        <activity android:name=".Recipe_rendom"></activity>
+        <activity android:name=".RecipesearchActivity" />
+        <activity android:name=".RecipehelperActivity" />
+        <activity android:name=".Recipe" />
         <activity android:name=".ShowrecipeActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".MakepartyActivity" />
         <activity android:name=".MyinfoActivity" />
-        <activity android:name=".MypartyActivity" />
-        <activity android:name=".PartylistActivity" />
-        <activity android:name=".PlaceActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignupActivity" />
-
         <activity
             android:name=".DatasaveActivity"
             android:screenOrientation="landscape">

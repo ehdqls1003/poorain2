@@ -38,8 +38,8 @@ public class Recipe extends AppCompatActivity {
 
     ArrayList<Recipejson> rList = new ArrayList<>();
 
-    ImageView food1,food2,win_img;
-    TextView food1_t,food2_t,win_sumry,win_name;
+    ImageView food1,food2,win_img,vs;
+    TextView food1_t,food2_t,win_sumry,win_name,gang;
     AppCompatButton button_r;
 
     ArrayList<Integer> fList = new ArrayList<>();//64강
@@ -69,7 +69,10 @@ public class Recipe extends AppCompatActivity {
         win_name = findViewById(R.id.win_name);
         win_sumry = findViewById(R.id.win_sumry);
         button_r = findViewById(R.id.button_r);
+        gang = findViewById(R.id.gang);
+        vs = findViewById(R.id.vs);
 
+        gang.setText("64 강");
 
         //rlist 생성
         jsonParsing(getJsonString());
@@ -145,6 +148,9 @@ public class Recipe extends AppCompatActivity {
                         stage ++;
                         Toast myToast = Toast.makeText(Recipe.this,"32강.", Toast.LENGTH_SHORT);
                         myToast.show();
+
+                        gang.setText("32 강");
+
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList2.get(f_a)).getIMG_URL())
                                 .centerCrop()
@@ -184,6 +190,7 @@ public class Recipe extends AppCompatActivity {
                         stage ++;
                         Toast myToast = Toast.makeText(Recipe.this,"16강.", Toast.LENGTH_SHORT);
                         myToast.show();
+                        gang.setText("16 강");
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList3.get(f_a)).getIMG_URL())
                                 .centerCrop()
@@ -225,6 +232,7 @@ public class Recipe extends AppCompatActivity {
                         stage ++;
                         Toast myToast = Toast.makeText(Recipe.this,"8강.", Toast.LENGTH_SHORT);
                         myToast.show();
+                        gang.setText("8 강");
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList4.get(f_a)).getIMG_URL())
                                 .centerCrop()
@@ -265,6 +273,7 @@ public class Recipe extends AppCompatActivity {
                         stage ++;
                         Toast myToast = Toast.makeText(Recipe.this,"4강.", Toast.LENGTH_SHORT);
                         myToast.show();
+                        gang.setText("4 강");
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList5.get(f_a)).getIMG_URL())
                                 .centerCrop()
@@ -305,6 +314,7 @@ public class Recipe extends AppCompatActivity {
                         stage ++;
                         Toast myToast = Toast.makeText(Recipe.this,"결승.", Toast.LENGTH_SHORT);
                         myToast.show();
+                        gang.setText("결승전");
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList6.get(f_a)).getIMG_URL())
                                 .centerCrop()
@@ -337,6 +347,8 @@ public class Recipe extends AppCompatActivity {
                     food2.setVisibility(View.INVISIBLE);
                     food1_t.setVisibility(View.INVISIBLE);
                     food2_t.setVisibility(View.INVISIBLE);
+                    vs.setVisibility(View.INVISIBLE);
+                    gang.setVisibility(View.INVISIBLE);
 
                     Toast myToast = Toast.makeText(Recipe.this,"끝.", Toast.LENGTH_SHORT);
                     myToast.show();
@@ -385,6 +397,7 @@ public class Recipe extends AppCompatActivity {
                         stage ++;
                         Toast myToast = Toast.makeText(Recipe.this,"32강.", Toast.LENGTH_SHORT);
                         myToast.show();
+                        gang.setText("32 강");
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList2.get(f_a)).getIMG_URL())
                                 .centerCrop()
@@ -424,6 +437,7 @@ public class Recipe extends AppCompatActivity {
                         stage ++;
                         Toast myToast = Toast.makeText(Recipe.this,"16강.", Toast.LENGTH_SHORT);
                         myToast.show();
+                        gang.setText("16 강");
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList3.get(f_a)).getIMG_URL())
                                 .centerCrop()
@@ -465,6 +479,7 @@ public class Recipe extends AppCompatActivity {
                         stage ++;
                         Toast myToast = Toast.makeText(Recipe.this,"8강.", Toast.LENGTH_SHORT);
                         myToast.show();
+                        gang.setText("8 강");
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList4.get(f_a)).getIMG_URL())
                                 .centerCrop()
@@ -505,6 +520,7 @@ public class Recipe extends AppCompatActivity {
                         stage ++;
                         Toast myToast = Toast.makeText(Recipe.this,"4강.", Toast.LENGTH_SHORT);
                         myToast.show();
+                        gang.setText("4 강");
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList5.get(f_a)).getIMG_URL())
                                 .centerCrop()
@@ -546,6 +562,7 @@ public class Recipe extends AppCompatActivity {
                         stage ++;
                         Toast myToast = Toast.makeText(Recipe.this,"결승.", Toast.LENGTH_SHORT);
                         myToast.show();
+                        gang.setText("결승전");
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList6.get(f_a)).getIMG_URL())
                                 .centerCrop()
@@ -578,6 +595,8 @@ public class Recipe extends AppCompatActivity {
                     food2.setVisibility(View.INVISIBLE);
                     food1_t.setVisibility(View.INVISIBLE);
                     food2_t.setVisibility(View.INVISIBLE);
+                    vs.setVisibility(View.INVISIBLE);
+                    gang.setVisibility(View.INVISIBLE);
 
                     Toast myToast = Toast.makeText(Recipe.this,"끝.", Toast.LENGTH_SHORT);
                     myToast.show();
@@ -598,6 +617,7 @@ public class Recipe extends AppCompatActivity {
                 Intent intent = new Intent(Recipe.this, ShowrecipeActivity.class);
                 intent.putExtra("win",rList.get(win).getRECIPE_ID());
                 startActivity(intent);
+                finish();
 
             }
         });

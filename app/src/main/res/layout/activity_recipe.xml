@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Recipe">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -102,6 +103,28 @@
         android:visibility="invisible"
         />
 
+    <TextView
+        android:id="@+id/gang"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/cardview_dark_background"
+        android:gravity="center"
+        android:text="몇강"
+        android:textSize="30dp"
+        android:textStyle="bold"
 
-
+        android:textColor="#ffffff"/>
+    <ImageView
+        android:id="@+id/vs"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/vs"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

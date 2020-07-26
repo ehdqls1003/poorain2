@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         place.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, PlaceActivity.class);
+                Intent intent = new Intent(MainActivity.this, RecipehelperActivity.class);
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 finish();
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity.this, PartylistActivity.class);
+                Intent intent = new Intent(MainActivity.this, RecipesearchActivity.class);
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 finish();
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         myparty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MypartyActivity.class);
+                Intent intent = new Intent(MainActivity.this, MyinfoActivity.class);
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 finish();

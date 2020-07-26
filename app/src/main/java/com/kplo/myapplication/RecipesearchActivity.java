@@ -7,15 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class PartylistActivity extends AppCompatActivity {
-
+public class RecipesearchActivity extends AppCompatActivity {
 
     TextView home,place,partylist,myparty;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_partylist);
+        setContentView(R.layout.activity_recipesearch);
+
 
         home = findViewById(R.id.home);
         place = findViewById(R.id.place);
@@ -25,7 +24,7 @@ public class PartylistActivity extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PartylistActivity.this, MainActivity.class);
+                Intent intent = new Intent(RecipesearchActivity.this, MainActivity.class);
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 finish();
@@ -35,7 +34,7 @@ public class PartylistActivity extends AppCompatActivity {
         place.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PartylistActivity.this, PlaceActivity.class);
+                Intent intent = new Intent(RecipesearchActivity.this, RecipehelperActivity.class);
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 finish();
@@ -46,7 +45,7 @@ public class PartylistActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(PartylistActivity.this, PartylistActivity.class);
+                Intent intent = new Intent(RecipesearchActivity.this, RecipesearchActivity.class);
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 finish();
@@ -55,7 +54,7 @@ public class PartylistActivity extends AppCompatActivity {
         myparty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PartylistActivity.this, MypartyActivity.class);
+                Intent intent = new Intent(RecipesearchActivity.this, MyinfoActivity.class);
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 finish();
@@ -63,13 +62,8 @@ public class PartylistActivity extends AppCompatActivity {
             }
         });
 
-    }
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        overridePendingTransition(0, 0);
 
     }
 
-}
+
+    }
