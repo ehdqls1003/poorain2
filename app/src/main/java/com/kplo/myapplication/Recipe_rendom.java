@@ -3,10 +3,13 @@ package com.kplo.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,6 +32,10 @@ public class Recipe_rendom extends AppCompatActivity {
     ImageView food_img;
 
     Handler han;
+    Thread th;
+    boolean stop;
+    //random 숫자
+    int pick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,28 +57,31 @@ public class Recipe_rendom extends AppCompatActivity {
             public void handleMessage(Message msg){
               super.handleMessage(msg);
 
+                Log.i("숫자 : ","메세지"+msg.arg1);
                 Glide.with(Recipe_rendom.this)
                         .load(rList.get(msg.arg1).getIMG_URL())
-                        .centerCrop()
                         .into(food_img);
                 food_sumry.setText(rList.get(msg.arg1).getSUMRY());
                 food_name.setText(rList.get(msg.arg1).getRECIPE_NM_KO());
+                pick = msg.arg1+1 ;
+                //+1하는 이유는 배열은 0부터시작하기때문에
 
 
             }
         };
 
-        Thread th = new Thread(new Runnable() {
+        th = new Thread(new Runnable() {
             @Override
             public void run() {
 
-                while (true){
+                while (!stop){
                     Message msg = han.obtainMessage();
                     Random rnd = new Random();
                     int num = rnd.nextInt(500);
                     msg.arg1 = num;
+                    han.sendMessage(msg);
                     try{
-                        Thread.sleep(1000);
+                        Thread.sleep(100);
                     }catch (InterruptedException e){
                         e.printStackTrace();
                     }
@@ -81,6 +91,25 @@ public class Recipe_rendom extends AppCompatActivity {
             }
         });
         th.start();
+
+        button_p.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                th.interrupt();
+                han.removeMessages(0);
+                stop = true;
+                Log.i("숫자 : ",""+pick);
+                finish();
+
+                Intent intent = new Intent(Recipe_rendom.this, ShowrecipeActivity.class);
+                intent.putExtra("win",""+pick);
+                intent.putExtra("type",2);
+                startActivity(intent);
+
+
+
+            }
+        });
 
 
 
@@ -121,5 +150,11 @@ public class Recipe_rendom extends AppCompatActivity {
         return rList3;
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        th.interrupt();
+        han.removeMessages(0);
+        stop = true;
+    }
 }

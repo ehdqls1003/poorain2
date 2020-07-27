@@ -7,6 +7,7 @@
     android:layout_height="wrap_content"
     tools:context=".ShowrecipeActivity"
     >
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -56,6 +57,36 @@
         android:text="sdf"
         />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/replay_b"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:text="다시하기"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="100dp"
+        />
+
+    <ImageView
+        android:id="@+id/star"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toTopOf="@id/replay_b"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/star"
+        android:layout_marginRight="20dp"/>
+
+    <ImageView
+        android:id="@+id/star2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toTopOf="@id/replay_b"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/star2"
+        android:layout_marginRight="20dp"
+        android:visibility="invisible"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

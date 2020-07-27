@@ -1,6 +1,7 @@
 package com.kplo.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,13 +33,18 @@ public class ShowrecipeActivity extends AppCompatActivity {
     ArrayList<Recipejson2> rList4 = new ArrayList<>();
     ArrayList<Recipejson3> rList3 = new ArrayList<>();
     ArrayList<Recipejson3> rList5 = new ArrayList<>();
+    ArrayList<Recipejson> recent = new ArrayList<>();
     ShowrecipeActivity_Adapter adapter;
 
-    ImageView food_img;
+    ImageView food_img,star,star2;
     TextView food_name,irdnt_nm;
+    AppCompatButton replay_b;
     //win = getrecipeID를 받았따.
     String win;
     String irdnt_nms;
+    int type;
+    /*
+    int win2 = Integer.parseInt(win);*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +56,29 @@ public class ShowrecipeActivity extends AppCompatActivity {
         ReadFriendsDataU2();
         ReadFriendsDataU3();
 
+
+        //예외처리
+        SharedPreferences preferences = getSharedPreferences("recipe_list",MODE_PRIVATE);
+        String text = preferences.getString("recent","");
+
+        if(text.equals("")) {
+        }else{
+            ReadFriendsDataU4();
+        }
+
         food_img = findViewById(R.id.food_img);
         food_name = findViewById(R.id.food_name);
         irdnt_nm = findViewById(R.id.irdnt_nm);
+        star = findViewById(R.id.star);
+        star2 = findViewById(R.id.star2);
+        replay_b = findViewById(R.id.replay_b);
+
+        replay_b.setVisibility(View.INVISIBLE);
 
 
         Intent intent = getIntent();
         win = intent.getStringExtra("win");
+        type = intent.getIntExtra("type",0);
         Log.i("TAG", "win : "+win);
 
         for(int i = 0; i < rList.size(); i++){
@@ -120,6 +143,92 @@ public class ShowrecipeActivity extends AppCompatActivity {
         adapter = new ShowrecipeActivity_Adapter(rList4) ;
         recyclerView.setAdapter(adapter) ;
 
+        for (int i = 0; i < recent.size(); i++) {
+
+            if (recent.get(i).getRECIPE_ID().equals(win)){
+                star.setVisibility(View.INVISIBLE);
+                star2.setVisibility(View.VISIBLE);
+            }
+
+        }
+
+
+        star.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                star.setVisibility(View.INVISIBLE);
+                star2.setVisibility(View.VISIBLE);
+
+                for (int i = 0; i < rList.size(); i++) {
+
+                    if (rList.get(i).getRECIPE_ID().equals(win)) {
+
+                        Recipejson recipe = new Recipejson();
+
+                        recipe.setRECIPE_ID(rList.get(i).getRECIPE_ID());
+                        recipe.setIMG_URL(rList.get(i).getIMG_URL());
+                        recipe.setRECIPE_NM_KO(rList.get(i).getRECIPE_NM_KO());
+                        recipe.setSUMRY(rList.get(i).getSUMRY());
+                        recipe.setTY_NM(rList.get(i).getTY_NM());
+
+                        recent.add(recipe);
+
+
+                    }
+                }
+
+                SaveFriendData4(recent);
+
+
+            }
+        });
+
+        star2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                star2.setVisibility(View.INVISIBLE);
+                star.setVisibility(View.VISIBLE);
+
+                for (int i = 0; i < recent.size(); i++) {
+
+                    if (recent.get(i).getRECIPE_ID().equals(win)){
+                        recent.remove(i);
+                    }
+
+                }
+
+                SaveFriendData4(recent);
+
+            }
+        });
+
+        //type 이있을때 다시하기버튼이 보이게한다
+        if (type == 0){
+        }else{
+            replay_b.setVisibility(View.VISIBLE);
+        }
+
+        replay_b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (type == 1){
+                    Intent intent = new Intent(ShowrecipeActivity.this, Recipe.class);
+                    intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent);
+                    finish();
+                }else if(type == 2){
+                    Intent intent = new Intent(ShowrecipeActivity.this, Recipe_rendom.class);
+                    intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent);
+                    finish();
+                }
+
+            }
+        });
+
 
 
     }
@@ -160,6 +269,25 @@ public class ShowrecipeActivity extends AppCompatActivity {
         }.getType();
         rList3 = gson.fromJson(json, type);
         return rList3;
+    }
+
+    private ArrayList<Recipejson> ReadFriendsDataU4() {
+        SharedPreferences sharedPrefs = getSharedPreferences("recipe_list",MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPrefs.getString("recent", "EMPTY");
+        Type type = new TypeToken<ArrayList<Recipejson>>() {
+        }.getType();
+        recent = gson.fromJson(json, type);
+        return recent;
+    }
+
+    private void SaveFriendData4(ArrayList<Recipejson> friends) {
+        SharedPreferences preferences = getSharedPreferences("recipe_list",MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(friends);
+        editor.putString("recent", json);
+        editor.commit();
     }
 
 

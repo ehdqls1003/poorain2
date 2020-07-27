@@ -5,6 +5,7 @@ public class Recipejson {
     private String IMG_URL;
     private String RECIPE_NM_KO;
     private String SUMRY;
+    private String TY_NM;
 
     public String getRECIPE_ID() {
         return RECIPE_ID;
@@ -20,6 +21,9 @@ public class Recipejson {
     public String getSUMRY() {
         return SUMRY;
     }
+    public String getTY_NM(){
+        return TY_NM;
+    }
     public void setRECIPE_ID(String recipe_id) {
         this.RECIPE_ID = recipe_id;
     }
@@ -34,6 +38,10 @@ public class Recipejson {
     public void setSUMRY(String sumry) {
         this.SUMRY = sumry;
     }
+    public void setTY_NM(String ty_nm) {
+        this.TY_NM = ty_nm;
+    }
+
 
     @Override
 

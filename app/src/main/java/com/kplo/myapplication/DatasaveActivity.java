@@ -93,6 +93,7 @@ public class DatasaveActivity extends AppCompatActivity {
                 recipe.setIMG_URL(movieObject.getString("IMG_URL"));
                 recipe.setRECIPE_NM_KO(movieObject.getString("RECIPE_NM_KO"));
                 recipe.setSUMRY(movieObject.getString("SUMRY"));
+                recipe.setTY_NM(movieObject.getString("TY_NM"));
 
                 rList.add(recipe);
 

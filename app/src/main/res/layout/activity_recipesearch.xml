@@ -86,6 +86,26 @@
         app:layout_constraintLeft_toRightOf="@id/place"
         app:layout_constraintRight_toLeftOf="@id/myparty"
         />
+    <EditText
+        android:id="@+id/search_edit"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/midline"
+        android:paddingLeft="55dp"
+        android:paddingBottom="17dp"
+        android:maxLength="25"
+        />
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/serach"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/search_edit"
+        app:layout_constraintBottom_toBottomOf="@id/search_edit"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"/>
     <!--이벤트-->
     <TextView
         android:id="@+id/myparty"
@@ -110,10 +130,237 @@
         />
     <!-- 메인 선택 끝-->
 
-
     <!--스크롤뷰 끝-->
 
 
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="525dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_edit" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="전체 보기"
+        app:layout_constraintTop_toBottomOf="@id/search_edit"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/bt1"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="밥"
+        app:layout_constraintTop_toBottomOf="@id/search_edit"
+        app:layout_constraintLeft_toRightOf="@+id/btA"
+        app:layout_constraintRight_toLeftOf="@id/bt2"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="떡/한과"
+        app:layout_constraintTop_toBottomOf="@id/search_edit"
+        app:layout_constraintLeft_toRightOf="@id/bt1"
+        app:layout_constraintRight_toLeftOf="@id/bt3"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="만두/면류"
+        app:layout_constraintTop_toBottomOf="@id/search_edit"
+        app:layout_constraintLeft_toRightOf="@id/bt2"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="국"
+        app:layout_constraintTop_toBottomOf="@id/bt1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/bt5"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="나물/생채/샐러드"
+        app:layout_constraintTop_toBottomOf="@id/bt1"
+        app:layout_constraintLeft_toRightOf="@id/bt4"
+        app:layout_constraintRight_toLeftOf="@id/bt6"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="구이"
+        app:layout_constraintTop_toBottomOf="@id/bt1"
+        app:layout_constraintLeft_toRightOf="@id/bt5"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="볶음"
+        app:layout_constraintTop_toBottomOf="@id/bt4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/bt5"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="밑반찬/김치"
+        app:layout_constraintTop_toBottomOf="@id/bt4"
+        app:layout_constraintLeft_toRightOf="@id/bt4"
+        app:layout_constraintRight_toLeftOf="@id/bt6"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="조림"
+        app:layout_constraintTop_toBottomOf="@id/bt4"
+        app:layout_constraintLeft_toRightOf="@id/bt5"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="찜"
+        app:layout_constraintTop_toBottomOf="@id/bt7"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/bt5"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="튀김/커틀릿"
+        app:layout_constraintTop_toBottomOf="@id/bt7"
+        app:layout_constraintLeft_toRightOf="@id/bt4"
+        app:layout_constraintRight_toLeftOf="@id/bt6"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="찌개/전골/스튜"
+        app:layout_constraintTop_toBottomOf="@id/bt7"
+        app:layout_constraintLeft_toRightOf="@id/bt5"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="도시락/간식"
+        app:layout_constraintTop_toBottomOf="@id/bt10"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/bt5"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="부침"
+        app:layout_constraintTop_toBottomOf="@id/bt10"
+        app:layout_constraintLeft_toRightOf="@id/bt4"
+        app:layout_constraintRight_toLeftOf="@id/bt6"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="양식"
+        app:layout_constraintTop_toBottomOf="@id/bt10"
+        app:layout_constraintLeft_toRightOf="@id/bt5"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="샌드위치/햄버거"
+        app:layout_constraintTop_toBottomOf="@id/bt13"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/bt5"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="빵/과자"
+        app:layout_constraintTop_toBottomOf="@id/bt13"
+        app:layout_constraintLeft_toRightOf="@id/bt4"
+        app:layout_constraintRight_toLeftOf="@id/bt6"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="양념장"
+        app:layout_constraintTop_toBottomOf="@id/bt13"
+        app:layout_constraintLeft_toRightOf="@id/bt5"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="음료"
+        app:layout_constraintTop_toBottomOf="@id/bt16"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/bt5"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="피자"
+        app:layout_constraintTop_toBottomOf="@id/bt16"
+        app:layout_constraintLeft_toRightOf="@id/bt4"
+        app:layout_constraintRight_toLeftOf="@id/bt6"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="그라탕/리조또"
+        app:layout_constraintTop_toBottomOf="@id/bt16"
+        app:layout_constraintLeft_toRightOf="@id/bt5"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="20dp"/>
 
 
 

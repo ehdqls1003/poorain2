@@ -39,7 +39,7 @@ public class Recipe extends AppCompatActivity {
     ArrayList<Recipejson> rList = new ArrayList<>();
 
     ImageView food1,food2,win_img,vs;
-    TextView food1_t,food2_t,win_sumry,win_name,gang;
+    TextView food1_t,food2_t,win_sumry,win_name,gang,counter;
     AppCompatButton button_r;
 
     ArrayList<Integer> fList = new ArrayList<>();//64강
@@ -55,6 +55,8 @@ public class Recipe extends AppCompatActivity {
     int f_a = 0 ;
     int f_b = 1 ;
     int stage = 0;
+    int count1 = 1;
+    int count2 = 32;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,7 @@ public class Recipe extends AppCompatActivity {
         button_r = findViewById(R.id.button_r);
         gang = findViewById(R.id.gang);
         vs = findViewById(R.id.vs);
+        counter = findViewById(R.id.counter);
 
         gang.setText("64 강");
 
@@ -128,6 +131,8 @@ public class Recipe extends AppCompatActivity {
                         f_a += 2;
                         f_b += 2;
                         Log.i("번호","f_a :"+f_a);
+                        count1++;
+                        counter.setText("( "+count1+" / "+count2+" )");
 
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList.get(f_a)).getIMG_URL())
@@ -148,6 +153,9 @@ public class Recipe extends AppCompatActivity {
                         stage ++;
                         Toast myToast = Toast.makeText(Recipe.this,"32강.", Toast.LENGTH_SHORT);
                         myToast.show();
+                        count1 = 1;
+                        count2 = 16;
+                        counter.setText("( "+count1+" / "+count2+" )");
 
                         gang.setText("32 강");
 
@@ -170,6 +178,8 @@ public class Recipe extends AppCompatActivity {
 
                         f_a += 2;
                         f_b += 2;
+                        count1++;
+                        counter.setText("( "+count1+" / "+count2+" )");
 
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList2.get(f_a)).getIMG_URL())
@@ -191,6 +201,9 @@ public class Recipe extends AppCompatActivity {
                         Toast myToast = Toast.makeText(Recipe.this,"16강.", Toast.LENGTH_SHORT);
                         myToast.show();
                         gang.setText("16 강");
+                        count1 = 1;
+                        count2 = 8;
+                        counter.setText("( "+count1+" / "+count2+" )");
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList3.get(f_a)).getIMG_URL())
                                 .centerCrop()
@@ -212,6 +225,8 @@ public class Recipe extends AppCompatActivity {
 
                         f_a += 2;
                         f_b += 2;
+                        count1++;
+                        counter.setText("( "+count1+" / "+count2+" )");
 
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList3.get(f_a)).getIMG_URL())
@@ -233,6 +248,9 @@ public class Recipe extends AppCompatActivity {
                         Toast myToast = Toast.makeText(Recipe.this,"8강.", Toast.LENGTH_SHORT);
                         myToast.show();
                         gang.setText("8 강");
+                        count1 = 1;
+                        count2 = 4;
+                        counter.setText("( "+count1+" / "+count2+" )");
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList4.get(f_a)).getIMG_URL())
                                 .centerCrop()
@@ -253,6 +271,8 @@ public class Recipe extends AppCompatActivity {
 
                         f_a += 2;
                         f_b += 2;
+                        count1++;
+                        counter.setText("( "+count1+" / "+count2+" )");
 
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList4.get(f_a)).getIMG_URL())
@@ -274,6 +294,9 @@ public class Recipe extends AppCompatActivity {
                         Toast myToast = Toast.makeText(Recipe.this,"4강.", Toast.LENGTH_SHORT);
                         myToast.show();
                         gang.setText("4 강");
+                        count1 = 1;
+                        count2 = 2;
+                        counter.setText("( "+count1+" / "+count2+" )");
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList5.get(f_a)).getIMG_URL())
                                 .centerCrop()
@@ -294,6 +317,8 @@ public class Recipe extends AppCompatActivity {
 
                         f_a += 2;
                         f_b += 2;
+                        count1++;
+                        counter.setText("( "+count1+" / "+count2+" )");
 
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList5.get(f_a)).getIMG_URL())
@@ -312,6 +337,7 @@ public class Recipe extends AppCompatActivity {
                         f_a = 0;
                         f_b = 1;
                         stage ++;
+                        counter.setVisibility(View.INVISIBLE);
                         Toast myToast = Toast.makeText(Recipe.this,"결승.", Toast.LENGTH_SHORT);
                         myToast.show();
                         gang.setText("결승전");
@@ -376,6 +402,8 @@ public class Recipe extends AppCompatActivity {
 
                         f_a += 2;
                         f_b += 2;
+                        count1++;
+                        counter.setText("( "+count1+" / "+count2+" )");
                         Log.i("번호","f_a :"+f_a);
 
                         Glide.with(Recipe.this)
@@ -395,6 +423,9 @@ public class Recipe extends AppCompatActivity {
                         f_a = 0;
                         f_b = 1;
                         stage ++;
+                        count1 = 1;
+                        count2 = 16;
+                        counter.setText("( "+count1+" / "+count2+" )");
                         Toast myToast = Toast.makeText(Recipe.this,"32강.", Toast.LENGTH_SHORT);
                         myToast.show();
                         gang.setText("32 강");
@@ -417,6 +448,8 @@ public class Recipe extends AppCompatActivity {
 
                         f_a += 2;
                         f_b += 2;
+                        count1++;
+                        counter.setText("( "+count1+" / "+count2+" )");
 
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList2.get(f_a)).getIMG_URL())
@@ -435,6 +468,9 @@ public class Recipe extends AppCompatActivity {
                         f_a = 0;
                         f_b = 1;
                         stage ++;
+                        count1 = 1;
+                        count2 = 8;
+                        counter.setText("( "+count1+" / "+count2+" )");
                         Toast myToast = Toast.makeText(Recipe.this,"16강.", Toast.LENGTH_SHORT);
                         myToast.show();
                         gang.setText("16 강");
@@ -459,6 +495,8 @@ public class Recipe extends AppCompatActivity {
 
                         f_a += 2;
                         f_b += 2;
+                        count1++;
+                        counter.setText("( "+count1+" / "+count2+" )");
 
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList3.get(f_a)).getIMG_URL())
@@ -477,6 +515,9 @@ public class Recipe extends AppCompatActivity {
                         f_a = 0;
                         f_b = 1;
                         stage ++;
+                        count1 = 1;
+                        count2 = 4;
+                        counter.setText("( "+count1+" / "+count2+" )");
                         Toast myToast = Toast.makeText(Recipe.this,"8강.", Toast.LENGTH_SHORT);
                         myToast.show();
                         gang.setText("8 강");
@@ -500,6 +541,8 @@ public class Recipe extends AppCompatActivity {
 
                         f_a += 2;
                         f_b += 2;
+                        count1++;
+                        counter.setText("( "+count1+" / "+count2+" )");
 
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList4.get(f_a)).getIMG_URL())
@@ -518,6 +561,9 @@ public class Recipe extends AppCompatActivity {
                         f_a = 0;
                         f_b = 1;
                         stage ++;
+                        count1 = 1;
+                        count2 = 2;
+                        counter.setText("( "+count1+" / "+count2+" )");
                         Toast myToast = Toast.makeText(Recipe.this,"4강.", Toast.LENGTH_SHORT);
                         myToast.show();
                         gang.setText("4 강");
@@ -541,6 +587,8 @@ public class Recipe extends AppCompatActivity {
 
                         f_a += 2;
                         f_b += 2;
+                        count1++;
+                        counter.setText("( "+count1+" / "+count2+" )");
 
                         Glide.with(Recipe.this)
                                 .load(rList.get(fList5.get(f_a)).getIMG_URL())
@@ -560,6 +608,7 @@ public class Recipe extends AppCompatActivity {
                         f_a = 0;
                         f_b = 1;
                         stage ++;
+                        counter.setVisibility(View.INVISIBLE);
                         Toast myToast = Toast.makeText(Recipe.this,"결승.", Toast.LENGTH_SHORT);
                         myToast.show();
                         gang.setText("결승전");
@@ -616,6 +665,7 @@ public class Recipe extends AppCompatActivity {
 
                 Intent intent = new Intent(Recipe.this, ShowrecipeActivity.class);
                 intent.putExtra("win",rList.get(win).getRECIPE_ID());
+                intent.putExtra("type",1);
                 startActivity(intent);
                 finish();
 

@@ -31,6 +31,27 @@
         android:layout_height="1dp"
         android:background="#000000"
         />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/recipick_b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="레시픽"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/midline"
+        android:layout_marginTop="30dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/rendompick_b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="랜덤픽"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recipick_b"
+        android:layout_marginTop="30dp"/>
+
     <!--탑라인 끝-->
     <!--
 

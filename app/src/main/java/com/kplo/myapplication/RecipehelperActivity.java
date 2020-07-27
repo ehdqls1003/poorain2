@@ -1,6 +1,7 @@
 package com.kplo.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 public class RecipehelperActivity extends AppCompatActivity {
 
     TextView home,place,partylist,myparty;
+    AppCompatButton recipick_b,rendompick_b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +22,8 @@ public class RecipehelperActivity extends AppCompatActivity {
         place = findViewById(R.id.place);
         partylist = findViewById(R.id.partylist);
         myparty = findViewById(R.id.myparty);
+        recipick_b = findViewById(R.id.recipick_b);
+        rendompick_b = findViewById(R.id.rendompick_b);
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +62,28 @@ public class RecipehelperActivity extends AppCompatActivity {
                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 finish();
+
+            }
+        });
+
+
+
+        recipick_b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RecipehelperActivity.this, Recipe.class);
+                intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+
+            }
+        });
+
+        rendompick_b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RecipehelperActivity.this, Recipe_rendom.class);
+                intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
 
             }
         });

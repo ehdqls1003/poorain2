@@ -1,6 +1,7 @@
 package com.kplo.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 public class MyinfoActivity extends AppCompatActivity {
 
     TextView home,place,partylist,myparty;
+    AppCompatButton star_b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +23,7 @@ public class MyinfoActivity extends AppCompatActivity {
         place = findViewById(R.id.place);
         partylist = findViewById(R.id.partylist);
         myparty = findViewById(R.id.myparty);
+        star_b = findViewById(R.id.star_b);
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +65,15 @@ public class MyinfoActivity extends AppCompatActivity {
 
             }
         });
+        star_b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyinfoActivity.this, Recent_RecipeActivity.class);
+                intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
 
+            }
+        });
 
     }
 
