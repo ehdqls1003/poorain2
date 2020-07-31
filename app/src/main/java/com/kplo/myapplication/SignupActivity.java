@@ -35,7 +35,7 @@ import java.util.ArrayList;
 
 public class SignupActivity extends AppCompatActivity {
 
-    private static String IP_ADDRESS = "192.168.234.139";
+    private static String IP_ADDRESS = "192.168.0.94";
     private static String TAG = "phptest";
 
     private EditText inputid;
@@ -147,9 +147,9 @@ public class SignupActivity extends AppCompatActivity {
 
 
         class InsertData extends AsyncTask<String, Void, String>{
-            ProgressDialog progressDialog;
+        ProgressDialog progressDialog;
 
-            @Override
+        @Override
         protected void onPreExecute() {
             super.onPreExecute();
             progressDialog = ProgressDialog.show(SignupActivity.this,

@@ -37,6 +37,7 @@ public class RecipesearchActivity_ty extends AppCompatActivity implements Recipe
     String TAG = "종류";
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,8 +99,8 @@ public class RecipesearchActivity_ty extends AppCompatActivity implements Recipe
 
 
     @Override
-    public void onItemClicked(int position,String win) {/*
-        Toast.makeText(this,"아이템클릭"+win,Toast.LENGTH_SHORT).show();*/
+    public void onItemClicked(int position,String win) {
+        /* Toast.makeText(this,"아이템클릭"+win,Toast.LENGTH_SHORT).show(); */
 
         Intent intent = new Intent(RecipesearchActivity_ty.this, ShowrecipeActivity.class);
         intent.putExtra("win",win);

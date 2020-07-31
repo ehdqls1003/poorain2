@@ -25,14 +25,12 @@ public class DatasaveActivity extends AppCompatActivity {
     ArrayList<Recipejson2> rList2 = new ArrayList<>();
     ArrayList<Recipejson3> rList3 = new ArrayList<>();
 
-    AppCompatButton button3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datasave);
 
-        button3 = findViewById(R.id.button3);
 
         jsonParsing(getJsonString());
         jsonParsing2(getJsonString2());
@@ -42,14 +40,6 @@ public class DatasaveActivity extends AppCompatActivity {
         SaveFriendData2(rList2);
         SaveFriendData3(rList3);
 
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DatasaveActivity.this, Recipe.class);
-                startActivity(intent);
-
-            }
-        });
 
     }
 

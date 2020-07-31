@@ -12,18 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Recent_RecipeActivity"></activity>
+        <activity android:name=".AddfriendActivity"></activity>
+        <activity android:name=".Recent_RecipeActivity" />
         <activity android:name=".RecipesearchActivity_ty" />
         <activity android:name=".DatasaveActivity" />
         <activity android:name=".RecipesearchActivity" />
         <activity android:name=".RecipehelperActivity" />
-        <activity android:name=".Recipe"
-            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".Recipe"
+            android:screenOrientation="landscape" />
         <activity android:name=".ShowrecipeActivity" />
         <activity android:name=".Recipe_rendom" />
         <activity android:name=".MyinfoActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".SignupActivity" /> <!-- android:screenOrientation="landscape" -->
+        <activity android:name=".SignupActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

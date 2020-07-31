@@ -22,11 +22,14 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;*/
 
+import com.google.gson.Gson;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -38,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private static String TAG = "phptest";
-    private static String IP_ADDRESS = "192.168.234.139";
+    private static String IP_ADDRESS = "192.168.0.94";
     String mJsonString;
     TextView findid,findpw;
     AppCompatButton loginbutton,signup;
@@ -48,6 +51,9 @@ public class LoginActivity extends AppCompatActivity {
     String check_id;
     String check_pw;
 
+    ArrayList<Recipejson> rList = new ArrayList<>();
+    ArrayList<Recipejson2> rList2 = new ArrayList<>();
+    ArrayList<Recipejson3> rList3 = new ArrayList<>();
     ArrayList<Signup_Item> uList = new ArrayList<>();
 
     @Override
@@ -61,6 +67,14 @@ public class LoginActivity extends AppCompatActivity {
         signup = findViewById(R.id.signup);
         inputid = findViewById(R.id.inputid);
         inputpw = findViewById(R.id.inputpw);
+
+        jsonParsing(getJsonString());
+        jsonParsing2(getJsonString2());
+        jsonParsing3(getJsonString3());
+
+        SaveFriendData(rList);
+        SaveFriendData2(rList2);
+        SaveFriendData3(rList3);
 
         GetData task = new GetData();
         task.execute( "http://" + IP_ADDRESS + "/getjson.php");
@@ -105,7 +119,17 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if(login) {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
                     startActivity(intent);
+
+                    SharedPreferences sharedPreferences = getSharedPreferences("user_login",MODE_PRIVATE);
+                    //저장을 하기위해 editor를 이용하여 값을 저장시켜준다.
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    String text = inputid.getText().toString(); // 사용자가 입력한 저장할 데이터
+                    editor.putString("id",text); // key, value를 이용하여 저장하는 형태
+                    //최종 커밋
+                    editor.commit();
+
                 }else{
                     Toast myToast = Toast.makeText(LoginActivity.this,"회원정보를 확인해주세요.", Toast.LENGTH_SHORT);
                     myToast.show();
@@ -258,6 +282,180 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+
+
+
+    private String getJsonString()
+    {
+        String json = "";
+
+        try {
+            InputStream is = getAssets().open("레시피기본.json");
+            int fileSize = is.available();
+
+            byte[] buffer = new byte[fileSize];
+            is.read(buffer);
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+        }
+        catch (IOException ex)
+        {
+            ex.printStackTrace();
+        }
+
+        return json;
+    }
+
+    private void jsonParsing(String json)
+    {
+        try{
+            JSONObject jsonObject = new JSONObject(json);
+
+            JSONArray movieArray = jsonObject.getJSONArray("data");
+
+            for(int i=0; i<movieArray.length(); i++)
+            {
+                JSONObject movieObject = movieArray.getJSONObject(i);
+
+                Recipejson recipe = new Recipejson();
+
+                recipe.setRECIPE_ID(movieObject.getString("RECIPE_ID"));
+                recipe.setIMG_URL(movieObject.getString("IMG_URL"));
+                recipe.setRECIPE_NM_KO(movieObject.getString("RECIPE_NM_KO"));
+                recipe.setSUMRY(movieObject.getString("SUMRY"));
+                recipe.setTY_NM(movieObject.getString("TY_NM"));
+
+                rList.add(recipe);
+
+            }
+        }catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getJsonString2()
+    {
+        String json = "";
+
+        try {
+            InputStream is = getAssets().open("레시피과정.json");
+            int fileSize = is.available();
+
+            byte[] buffer = new byte[fileSize];
+            is.read(buffer);
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+        }
+        catch (IOException ex)
+        {
+            ex.printStackTrace();
+        }
+
+        return json;
+    }
+
+    private void jsonParsing2(String json)
+    {
+        try{
+            JSONObject jsonObject = new JSONObject(json);
+
+            JSONArray movieArray = jsonObject.getJSONArray("data");
+
+            for(int i=0; i<movieArray.length(); i++)
+            {
+                JSONObject movieObject = movieArray.getJSONObject(i);
+
+                Recipejson2 recipe = new Recipejson2();
+
+                recipe.setRECIPE_ID(movieObject.getString("RECIPE_ID"));
+                recipe.setCOOKING_NO(movieObject.getString("COOKING_DC"));
+                recipe.setCOOKING_DC(movieObject.getString("COOKING_NO"));
+
+                rList2.add(recipe);
+
+
+
+            }
+        }catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getJsonString3()
+    {
+        String json = "";
+
+        try {
+            InputStream is = getAssets().open("레시피재료.json");
+            int fileSize = is.available();
+
+            byte[] buffer = new byte[fileSize];
+            is.read(buffer);
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+        }
+        catch (IOException ex)
+        {
+            ex.printStackTrace();
+        }
+
+        return json;
+    }
+
+    private void jsonParsing3(String json)
+    {
+        try{
+            JSONObject jsonObject = new JSONObject(json);
+
+            JSONArray movieArray = jsonObject.getJSONArray("data");
+
+            for(int i=0; i<movieArray.length(); i++)
+            {
+                JSONObject movieObject = movieArray.getJSONObject(i);
+
+                Recipejson3 recipe = new Recipejson3();
+
+                recipe.setRECIPE_ID(movieObject.getString("RECIPE_ID"));
+                recipe.setIRDNT_NM(movieObject.getString("IRDNT_NM"));
+                recipe.setIRDNT_CPCTY(movieObject.getString("IRDNT_CPCTY"));
+
+                rList3.add(recipe);
+
+            }
+        }catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void SaveFriendData(ArrayList<Recipejson> friends) {
+        SharedPreferences preferences = getSharedPreferences("recipe_list",MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(friends);
+        editor.putString("recipe", json);
+        editor.commit();
+    }
+
+    private void SaveFriendData2(ArrayList<Recipejson2> friends) {
+        SharedPreferences preferences = getSharedPreferences("recipe_list",MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(friends);
+        editor.putString("recipe2", json);
+        editor.commit();
+    }
+
+    private void SaveFriendData3(ArrayList<Recipejson3> friends) {
+        SharedPreferences preferences = getSharedPreferences("recipe_list",MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(friends);
+        editor.putString("recipe3", json);
+        editor.commit();
+    }
 
 
 
